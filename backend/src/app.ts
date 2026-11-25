@@ -1,9 +1,7 @@
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
-import swaggerUi from 'swagger-ui-express';
 import { env } from './config/env';
-import { swaggerSpec } from './config/swagger';
 import { errorHandler } from './middleware/errorHandler';
 import { notFoundHandler } from './middleware/notFound';
 import { approvalsRouter } from './modules/approvals/approvals.routes';
@@ -26,8 +24,6 @@ export const createApp = () => {
     })
   );
   app.use(express.json({ limit: '1mb' }));
-
-  app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
   app.use('/health', healthRouter);
   app.use('/api/v1/health', healthRouter);
