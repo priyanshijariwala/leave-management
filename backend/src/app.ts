@@ -6,6 +6,7 @@ import { env } from './config/env';
 import { swaggerSpec } from './config/swagger';
 import { errorHandler } from './middleware/errorHandler';
 import { notFoundHandler } from './middleware/notFound';
+import { authRouter } from './modules/auth/auth.routes';
 import { healthRouter } from './modules/health/health.routes';
 
 export const createApp = () => {
@@ -24,6 +25,7 @@ export const createApp = () => {
 
   app.use('/health', healthRouter);
   app.use('/api/v1/health', healthRouter);
+  app.use('/api/v1/auth', authRouter);
 
   app.use(notFoundHandler);
   app.use(errorHandler);

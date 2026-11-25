@@ -1,11 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { ZodSchema } from 'zod';
-
-interface ValidationSchemas {
-  body?: ZodSchema;
-  query?: ZodSchema;
-  params?: ZodSchema;
-}
+import { ValidationSchemas } from '../types/common.types';
 
 export const validate = (schemas: ValidationSchemas) => {
   return (req: Request, _res: Response, next: NextFunction): void => {
