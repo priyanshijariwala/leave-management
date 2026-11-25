@@ -9,6 +9,15 @@ export const calculateInclusiveCalendarDays = (startDateStr: string, endDateStr:
 };
 
 /**
+ * Adds calendar days to a YYYY-MM-DD date string and returns YYYY-MM-DD.
+ */
+export const addDaysToDate = (dateStr: string, daysToAdd: number): string => {
+  const date = new Date(`${dateStr}T00:00:00.000Z`);
+  date.setUTCDate(date.getUTCDate() + daysToAdd);
+  return date.toISOString().slice(0, 10);
+};
+
+/**
  * Adds hours to an HH:mm time string and returns formatted HH:mm.
  */
 export const addHoursToTime = (timeStr: string, hoursToAdd: number): string => {

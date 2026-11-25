@@ -8,6 +8,9 @@ import { errorHandler } from './middleware/errorHandler';
 import { notFoundHandler } from './middleware/notFound';
 import { authRouter } from './modules/auth/auth.routes';
 import { healthRouter } from './modules/health/health.routes';
+import { leaveBalancesRouter } from './modules/leave-balances/leaveBalances.routes';
+import { leaveTypesRouter } from './modules/leave-types/leaveTypes.routes';
+import { leavesRouter } from './modules/leaves/leaves.routes';
 
 export const createApp = () => {
   const app = express();
@@ -26,6 +29,9 @@ export const createApp = () => {
   app.use('/health', healthRouter);
   app.use('/api/v1/health', healthRouter);
   app.use('/api/v1/auth', authRouter);
+  app.use('/api/v1/leave-types', leaveTypesRouter);
+  app.use('/api/v1/leave-balances', leaveBalancesRouter);
+  app.use('/api/v1/leaves', leavesRouter);
 
   app.use(notFoundHandler);
   app.use(errorHandler);
