@@ -1,4 +1,4 @@
-import { LeaveDurationType } from '@prisma/client';
+import { ApprovalStatus, LeaveDurationType, LeaveRequestStatus, UserRole } from '@prisma/client';
 
 export interface LeaveTypeWithBalance {
   id: string;
@@ -38,5 +38,32 @@ export interface LeavePreviewResult {
   projectedAvailableDays: number;
   maxEndDate: string | null;
   canSubmit: boolean;
+}
+
+export interface CreateLeaveInput {
+  leaveTypeId: string;
+  startDate: string;
+  endDate: string;
+  durationType: LeaveDurationType;
+  startTime?: string;
+  reason: string;
+}
+
+export interface CreateLeaveResult {
+  id: string;
+  status: LeaveRequestStatus;
+  totalDays: number;
+  reservedDays: number;
+  approvalSteps: Array<{
+    role: UserRole;
+    status: ApprovalStatus;
+  }>;
+}
+
+export interface MyLeavesQuery {
+  page: number;
+  limit: number;
+  status?: LeaveRequestStatus;
+  year?: number;
 }
 
